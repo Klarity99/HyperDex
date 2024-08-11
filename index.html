@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hyperlink codex</h1>
+
+    <div id="links">
+    </div>
+
+    <script>
+        // Your JavaScript code goes here
+        console.log('Hello from JavaScript!');
+
+         fetch('example.csv')
+            .then(response => response.text())
+            .then(text => {
+
+                const rows = text.split('\n');
+				const divs = document.getElementById('links');
+
+                for (const row of rows) {
+                	const vals = row.split(';');
+                	const div = document.createElement('div');
+                	div.innerHTML = `<img src="${vals[3]}" style="height: 100px;"><a href="${vals[2]}">link</a><p>${vals[1]}</p>`;
+
+                	divs.appendChild(div)
+                }
+
+            })
+            .catch(error => console.error('Error fetching the CSV file:', error));
+
+    //    const fs = require('fs');
+	//	const csv = require('csv-parser');
+
+	//	fs.createReadStream('path/to/your/file.csv')
+	//	  .pipe(csv())
+	//	  .on('data', (row) => {
+	//	    console.log(row);
+	//	  })
+	//	  .on('end', () => {
+	//	    console.log('CSV file successfully processed');
+	//	  });
+
+    </script>
+</body>
+</html>
